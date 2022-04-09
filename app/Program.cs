@@ -1,60 +1,38 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System;
+using app;
 
 namespace CSharpSort
 {
-    class Program
+    public class Program
     {
 
         // stdin: integers delimited by newline, finished with an empty line
         // stdout: integers sorted, delimited by ", "
-
+        
         public static void Main(string[] args)
         {
             var list = new List<int>();
 
             Console.WriteLine("Please write some number");
             var getNumber = Console.ReadLine();
-
-
-            while(getNumber!=""){
-                int addNumber= int.Parse(getNumber);
+            {
+                int addNumber = int.Parse(getNumber);
                 list.Add(addNumber);
-                getNumber=Console.ReadLine();
+                getNumber = Console.ReadLine();
             }
-            list = Sort(list);
+            list = Sorter.Sort(list);
             DisplayList(list);
         }
-        public static void DisplayList(List<int> list)
-        {
-            foreach (int s in list)
+            public static void DisplayList(List<int> list)
             {
-                Console.Write("\t{0}", s);
-            }
-        }
-        public static List<int> Sort(List<int> list)
-        {
-            int n = list.Count;
-            int change;
-
-            while (n > 1)
-            {
-                for (int i = 0; i < n - 1; i++)
+                foreach (int s in list)
                 {
-                    if (list[i] > list[i + 1])
-                    {
-                        change = list[i + 1];
-                        list[i + 1] = list[i];
-                        list[i] = change;
-                    }
+                    Console.Write("\t{0}", s);
                 }
-                n--;
             }
-
-            return list;
         }
-    }
 }
 
 // https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tutorials/arrays-and-collections
